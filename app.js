@@ -2,7 +2,6 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
 
-    // allow only / or /raw
     if (url.pathname !== "/" && url.pathname !== "/raw") {
       return new Response("Not Found", { status: 404 });
     }
@@ -11,6 +10,14 @@ export default {
 
     if (!target) {
       return new Response("Missing url parameter", { status: 400 });
+    }
+
+    // 🔒 optional protection
+    if (
+      target.includes("localhost") ||
+      target.includes("127.0.0.1")
+    ) {
+      return new Response("Blocked", { status: 403 });
     }
 
     try {
@@ -28,7 +35,6 @@ export default {
           "Access-Control-Allow-Origin": "*"
         }
       });
-
     } catch (e) {
       return new Response("Fetch failed", { status: 500 });
     }
