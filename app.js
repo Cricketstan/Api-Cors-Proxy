@@ -7,17 +7,8 @@ export default {
     }
 
     const target = url.searchParams.get("url");
-
     if (!target) {
       return new Response("Missing url parameter", { status: 400 });
-    }
-
-    // 🔒 optional protection
-    if (
-      target.includes("localhost") ||
-      target.includes("127.0.0.1")
-    ) {
-      return new Response("Blocked", { status: 403 });
     }
 
     try {
@@ -35,7 +26,7 @@ export default {
           "Access-Control-Allow-Origin": "*"
         }
       });
-    } catch (e) {
+    } catch {
       return new Response("Fetch failed", { status: 500 });
     }
   }
