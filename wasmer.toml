@@ -1,7 +1,11 @@
 [package]
-name = "raw-proxy"
+name = "crictv"
 version = "1.0.0"
 
 [[module]]
 name = "proxy"
 source = "app.js"
+abi = "wasi"
+
+[app]
+kind = "edge"
