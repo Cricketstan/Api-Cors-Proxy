@@ -1,5 +1,5 @@
 {
-  "name": "crictv-proxy",
+  "name": "crictv",
   "main": "worker.js",
   "compatibility_date": "2024-12-01",
   "workers_dev": true
