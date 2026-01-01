@@ -3,9 +3,8 @@ name = "crictv"
 version = "1.0.0"
 
 [[module]]
-name = "proxy"
+name = "edge"
 source = "app.js"
-abi = "wasi"
 
 [app]
 kind = "edge"
