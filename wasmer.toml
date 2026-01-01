@@ -1,0 +1,7 @@
+[package]
+name = "raw-proxy"
+version = "1.0.0"
+
+[[module]]
+name = "proxy"
+source = "app.js"
