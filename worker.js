@@ -1,14 +1,18 @@
 export default {
   async fetch(request) {
     const url = new URL(request.url);
-
-    if (url.pathname !== "/" && url.pathname !== "/raw") {
-      return new Response("Not Found", { status: 404 });
-    }
-
     const target = url.searchParams.get("url");
+
     if (!target) {
       return new Response("Missing url parameter", { status: 400 });
+    }
+
+    // 🔒 optional safety
+    if (
+      target.includes("localhost") ||
+      target.includes("127.0.0.1")
+    ) {
+      return new Response("Blocked", { status: 403 });
     }
 
     try {
